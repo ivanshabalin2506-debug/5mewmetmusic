@@ -3,11 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>5mewmet — Фан-сайт</title>
+  <title>5mewmetmusic</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
 
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
     body {
       font-family: 'VT323', monospace;
       background: #0a0a0a;
@@ -18,18 +23,18 @@
 
     header {
       text-align: center;
-      padding: 60px 20px 40px;
+      padding: 50px 15px 30px;
       background: rgba(0,0,0,0.9);
     }
     h1 {
-      font-size: 3.5rem;
+      font-size: 2.8rem;
       color: #fff;
       text-shadow: 0 0 20px #ff0000;
     }
     .subtitle {
       color: #999;
-      font-size: 1.4rem;
-      margin-top: 10px;
+      font-size: 1.3rem;
+      margin-top: 8px;
     }
 
     /* Дисклеймер */
@@ -38,28 +43,28 @@
       top: 50%; left: 50%;
       transform: translate(-50%, -50%);
       width: 90%;
-      max-width: 720px;
+      max-width: 700px;
       background: #111;
       border: 3px solid #444;
-      padding: 40px 30px;
+      padding: 35px 25px;
       z-index: 1000;
       text-align: center;
       box-shadow: 0 0 40px rgba(255,0,0,0.4);
     }
     #disclaimer h2 {
       color: #ff0000;
-      font-size: 2.9rem;
-      margin-bottom: 25px;
+      font-size: 2.6rem;
+      margin-bottom: 20px;
     }
     #disclaimer p {
-      font-size: 1.45rem;
+      font-size: 1.35rem;
       color: #ccc;
       margin-bottom: 15px;
     }
     #close-btn {
       position: absolute;
-      top: 15px; right: 25px;
-      font-size: 3rem;
+      top: 12px; right: 20px;
+      font-size: 2.8rem;
       color: #888;
       cursor: pointer;
     }
@@ -68,9 +73,9 @@
     nav {
       display: flex;
       justify-content: center;
-      gap: 20px;
       flex-wrap: wrap;
-      padding: 25px;
+      gap: 12px;
+      padding: 20px 15px;
       background: rgba(0,0,0,0.95);
       position: sticky;
       top: 0;
@@ -80,11 +85,13 @@
       background: #222;
       color: #fff;
       border: 2px solid #555;
-      padding: 16px 28px;
+      padding: 14px 20px;
       font-family: 'VT323', monospace;
-      font-size: 1.3rem;
+      font-size: 1.2rem;
       cursor: pointer;
       transition: all 0.3s;
+      flex: 1;
+      max-width: 280px;
     }
     button:hover {
       background: #ff0000;
@@ -94,81 +101,86 @@
 
     .section {
       display: none;
-      padding: 50px 20px;
-      max-width: 1200px;
+      padding: 30px 15px;
+      max-width: 1100px;
       margin: 0 auto;
     }
     .section.active { display: block; }
 
+    .info-text {
+      text-align: center;
+      color: #aaa;
+      font-size: 1.3rem;
+      margin: 20px 0 40px;
+      padding: 0 10px;
+    }
+
     .two-column {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 50px;
-      margin-top: 40px;
+      grid-template-columns: 1fr;
+      gap: 30px;
+      margin-top: 20px;
     }
+    @media (min-width: 768px) {
+      .two-column {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
     .column {
       background: rgba(30,30,30,0.95);
-      padding: 30px;
+      padding: 25px;
       border: 2px solid #444;
     }
     .column h3 {
       color: #ff6666;
-      font-size: 2rem;
-      margin-bottom: 25px;
+      font-size: 1.9rem;
+      margin-bottom: 20px;
       text-align: center;
     }
     ul { list-style: none; }
     li {
-      padding: 10px 0;
-      font-size: 1.4rem;
+      padding: 9px 0;
+      font-size: 1.35rem;
       border-bottom: 1px dashed #555;
     }
     li:last-child { border: none; }
 
     .top10 {
       background: rgba(30,30,30,0.95);
-      padding: 40px;
+      padding: 30px;
       border: 3px solid #444;
       max-width: 700px;
-      margin: 50px auto;
+      margin: 40px auto;
     }
     .top10 h2 {
       color: #ff4444;
       text-align: center;
-      margin-bottom: 30px;
-      font-size: 2.1rem;
+      margin-bottom: 25px;
+      font-size: 2rem;
     }
     .top10 ol {
-      font-size: 1.6rem;
-      padding-left: 50px;
+      font-size: 1.5rem;
+      padding-left: 40px;
     }
-    .top10 li { padding: 12px 0; }
 
     .warning {
       color: #ff0000;
-      font-size: 1.7rem;
+      font-size: 1.55rem;
       text-align: center;
-      margin: 30px 0;
-      padding: 18px;
+      margin: 25px 0;
+      padding: 15px;
       border: 2px solid #ff0000;
-      background: rgba(255,0,0,0.08);
-    }
-
-    .info-text {
-      text-align: center;
-      color: #aaa;
-      font-size: 1.35rem;
-      max-width: 900px;
-      margin: 30px auto;
-      padding: 0 20px;
+      background: rgba(255,0,0,0.1);
     }
 
     footer {
       text-align: center;
-      padding: 50px 20px;
+      padding: 40px 15px;
       background: rgba(0,0,0,0.9);
-      margin-top: 80px;
+      margin-top: 60px;
       color: #777;
+      font-size: 1.2rem;
     }
   </style>
 </head>
@@ -185,24 +197,24 @@
   </div>
 
   <header>
-    <h1>5MEWMET</h1>
+    <h1>5MEWMETMUSIC</h1>
     <p class="subtitle">фан-сайт</p>
   </header>
 
   <nav>
     <button onclick="showSection(1)">Все треки 5mewmet</button>
-    <button onclick="showSection(2)">Топ 10 песен 5mewmet</button>
-    <button onclick="showSection(3)">Песни без "пердящих битов"</button>
+    <button onclick="showSection(2)">Топ 10 песен</button>
+    <button onclick="showSection(3)">Без пердящих битов</button>
   </nav>
 
   <!-- Раздел 1 -->
   <div id="section1" class="section active">
-    <h2 style="text-align:center; color:#fff; margin-bottom:20px; font-size:2.4rem;">ВСЕ ТРЕКИ 5MEWMET</h2>
+    <h2 style="text-align:center; color:#fff; margin-bottom:15px; font-size:2.2rem;">ВСЕ ТРЕКИ 5MEWMET</h2>
     
     <p class="info-text">
       Автор не брал треки 5mewmet под другими псевдонимами, а также отбирал их как по его мнению наиболее слушабельные и подходящие для начинающих слушателей 5mewmet.
     </p>
-    
+
     <div class="two-column">
       <div class="column">
         <h3>Весёлые</h3>
@@ -265,7 +277,7 @@
       </div>
     </div>
 
-    <div class="two-column" style="margin-top:80px;">
+    <div class="two-column" style="margin-top:50px;">
       <div class="column">
         <h3>Грустные / Депрессивные</h3>
         <ul>
@@ -309,7 +321,7 @@
           <li>v noski</li>
         </ul>
 
-        <h3 style="margin-top:60px;">Спокойные</h3>
+        <h3 style="margin-top:50px;">Спокойные</h3>
         <ul>
           <li>ты знаешь)</li>
           <li>первый раз : будь собой</li>
@@ -328,7 +340,7 @@
     </div>
   </div>
 
-  <!-- Раздел 2: Топ 10 -->
+  <!-- Раздел 2 -->
   <div id="section2" class="section">
     <div class="top10">
       <h2>ТОП 10 ПЕСЕН 5MEWMET<br>(моё мнение!)</h2>
@@ -349,23 +361,23 @@
 
   <!-- Раздел 3 -->
   <div id="section3" class="section">
-    <h2 style="text-align:center; color:#fff; margin-bottom:40px; font-size:2.2rem;">ПЕСНИ БЕЗ "ПЕРДЯЩИХ БИТОВ"</h2>
+    <h2 style="text-align:center; color:#fff; margin-bottom:30px; font-size:2.1rem;">ПЕСНИ БЕЗ "ПЕРДЯЩИХ БИТОВ"</h2>
     
     <p class="warning">
       ВНИМАНИЕ! у 5mewmet треки основанны на стилистике jumpstyle, поэтому треков без громких битов будет либо мало, либо небольшие биты будут
     </p>
 
-    <div style="max-width:1000px; margin:0 auto; font-size:1.45rem; line-height:1.9;">
-      <h3 style="color:#ff8888; margin:35px 0 15px;">Весёлые</h3>
+    <div style="max-width:1000px; margin:0 auto; font-size:1.4rem; line-height:1.8;">
+      <h3 style="color:#ff8888; margin:30px 0 12px;">Весёлые</h3>
       <p>pizza from italia ; шиза ; НОВЫЙ ГОД ; лунаходы ; SWAG² ; bonsai + Юпи ; фармилка ; ultra dope ; #наскачает5mewmet</p>
 
-      <h3 style="color:#ff8888; margin:35px 0 15px;">Пошлые</h3>
+      <h3 style="color:#ff8888; margin:30px 0 12px;">Пошлые</h3>
       <p>нпс ; ш ; мне сосут твои шлюшки ; steam deck ; покажи мне свои :т</p>
 
-      <h3 style="color:#ff8888; margin:35px 0 15px;">Грустные / Депрессивные</h3>
+      <h3 style="color:#ff8888; margin:30px 0 12px;">Грустные / Депрессивные</h3>
       <p>сигареты ; 044961 ; 500 ; твои глаза – две ехи ; я всегда мечтал подохнуть ; сладкая боль ; причина твоего несчастья ; #save5mewmet ; SWAGSTAR ; мне так легко когда ты рядом ; .｡･ﾟﾟ･(＞_＜)･ﾟﾟ･｡.</p>
 
-      <h3 style="color:#ff8888; margin:35px 0 15px;">Спокойные</h3>
+      <h3 style="color:#ff8888; margin:30px 0 12px;">Спокойные</h3>
       <p>Какой хороший день! ; ты знаешь) ; будь собой ; витя ; Кетаминовая яма ; о тебе ; я знаю что ты хочешь ; возьми колесо! ; последний танец ; крест ; подарите зазу ; зеленоглазые деффки ; zazagartner.</p>
     </div>
   </div>
