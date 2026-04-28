@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>5mewmet — Фан-сайт</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'VT323', monospace;
+      background: #0a0a0a;
+      color: #ddd;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    header {
+      text-align: center;
+      padding: 60px 20px 40px;
+      background: rgba(0,0,0,0.9);
+    }
+    h1 {
+      font-size: 3.5rem;
+      color: #fff;
+      text-shadow: 0 0 20px #ff0000;
+    }
+    .subtitle {
+      color: #999;
+      font-size: 1.4rem;
+      margin-top: 10px;
+    }
+
+    /* Дисклеймер */
+    #disclaimer {
+      position: fixed;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 90%;
+      max-width: 720px;
+      background: #111;
+      border: 3px solid #444;
+      padding: 40px 30px;
+      z-index: 1000;
+      text-align: center;
+      box-shadow: 0 0 40px rgba(255,0,0,0.4);
+    }
+    #disclaimer h2 {
+      color: #ff0000;
+      font-size: 2.9rem;
+      margin-bottom: 25px;
+    }
+    #disclaimer p {
+      font-size: 1.45rem;
+      color: #ccc;
+      margin-bottom: 15px;
+    }
+    #close-btn {
+      position: absolute;
+      top: 15px; right: 25px;
+      font-size: 3rem;
+      color: #888;
+      cursor: pointer;
+    }
+    #close-btn:hover { color: #ff0000; }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      padding: 25px;
+      background: rgba(0,0,0,0.95);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    button {
+      background: #222;
+      color: #fff;
+      border: 2px solid #555;
+      padding: 16px 28px;
+      font-family: 'VT323', monospace;
+      font-size: 1.3rem;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    button:hover {
+      background: #ff0000;
+      color: #000;
+      border-color: #ff0000;
+    }
+
+    .section {
+      display: none;
+      padding: 50px 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .section.active { display: block; }
+
+    .two-column {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 50px;
+      margin-top: 40px;
+    }
+    .column {
+      background: rgba(30,30,30,0.95);
+      padding: 30px;
+      border: 2px solid #444;
+    }
+    .column h3 {
+      color: #ff6666;
+      font-size: 2rem;
+      margin-bottom: 25px;
+      text-align: center;
+    }
+    ul { list-style: none; }
+    li {
+      padding: 10px 0;
+      font-size: 1.4rem;
+      border-bottom: 1px dashed #555;
+    }
+    li:last-child { border: none; }
+
+    .top10 {
+      background: rgba(30,30,30,0.95);
+      padding: 40px;
+      border: 3px solid #444;
+      max-width: 700px;
+      margin: 50px auto;
+    }
+    .top10 h2 {
+      color: #ff4444;
+      text-align: center;
+      margin-bottom: 30px;
+      font-size: 2.1rem;
+    }
+    .top10 ol {
+      font-size: 1.6rem;
+      padding-left: 50px;
+    }
+    .top10 li { padding: 12px 0; }
+
+    .warning {
+      color: #ff0000;
+      font-size: 1.7rem;
+      text-align: center;
+      margin: 30px 0;
+      padding: 18px;
+      border: 2px solid #ff0000;
+      background: rgba(255,0,0,0.08);
+    }
+
+    .info-text {
+      text-align: center;
+      color: #aaa;
+      font-size: 1.35rem;
+      max-width: 900px;
+      margin: 30px auto;
+      padding: 0 20px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 50px 20px;
+      background: rgba(0,0,0,0.9);
+      margin-top: 80px;
+      color: #777;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Дисклеймер -->
+  <div id="disclaimer">
+    <span id="close-btn">✕</span>
+    <h2>ДИСКЛЕЙМЕР !</h2>
+    <p>Все песни и куда они расположены — мнение автора.<br>
+    Если ваше мнение конфликтует с моим, прошу не сердиться.<br>
+    У каждого оно разное!</p>
+    <p><strong>Рекомендую слушать все треки на SoundCloud — там их легче всего найти в оригинальном качестве.</strong></p>
+  </div>
+
+  <header>
+    <h1>5MEWMET</h1>
+    <p class="subtitle">фан-сайт</p>
+  </header>
+
+  <nav>
+    <button onclick="showSection(1)">Все треки 5mewmet</button>
+    <button onclick="showSection(2)">Топ 10 песен 5mewmet</button>
+    <button onclick="showSection(3)">Песни без "пердящих битов"</button>
+  </nav>
+
+  <!-- Раздел 1 -->
+  <div id="section1" class="section active">
+    <h2 style="text-align:center; color:#fff; margin-bottom:20px; font-size:2.4rem;">ВСЕ ТРЕКИ 5MEWMET</h2>
+    
+    <p class="info-text">
+      Автор не брал треки 5mewmet под другими псевдонимами, а также отбирал их как по его мнению наиболее слушабельные и подходящие для начинающих слушателей 5mewmet.
+    </p>
+    
+    <div class="two-column">
+      <div class="column">
+        <h3>Весёлые</h3>
+        <ul>
+          <li>pizza from italia</li>
+          <li>Макаров</li>
+          <li>R.i.p 5mewmetl</li>
+          <li>Какой хороший день</li>
+          <li>СПБ</li>
+          <li>шиза</li>
+          <li>Новый год</li>
+          <li>h2o</li>
+          <li>Bernard Arnault</li>
+          <li>манипулятор</li>
+          <li>)</li>
+          <li>лунаходы</li>
+          <li>c13h16clno</li>
+          <li>футбол 2</li>
+          <li>SWAG²</li>
+          <li>bonsai + Юпи</li>
+          <li>фармилка</li>
+          <li>флосс</li>
+          <li>я ебаный гений</li>
+          <li>я такой крутой</li>
+          <li>#наскачает5mewmet</li>
+          <li>разноцветные ремни</li>
+          <li>кишечная палочка</li>
+          <li>дисклеймер</li>
+          <li>4 (MAYOT COV)</li>
+        </ul>
+      </div>
+
+      <div class="column">
+        <h3>Пошлые</h3>
+        <ul>
+          <li>loli</li>
+          <li>Очередная малолетка</li>
+          <li>хлопай своей писей</li>
+          <li>PANACEA</li>
+          <li>нпс</li>
+          <li>ш</li>
+          <li>SQUIRT GAME</li>
+          <li>first blood (h)</li>
+          <li>хочу тебя трахать</li>
+          <li>Gimme The Loot 2</li>
+          <li>KOUKOU ROUKOU : твои уши трахает мьюмет (h)</li>
+          <li>гены</li>
+          <li>мне сосут твои шлюшки</li>
+          <li>steam deck</li>
+          <li>ultra dope</li>
+          <li>чемпион</li>
+          <li>подарочек на память (h)</li>
+          <li>Я ТАК ОБОЖАЮ 2 (h)</li>
+          <li>чипсики доритос</li>
+          <li>номномном</li>
+          <li>покажи мне свои :т</li>
+          <li>ореол</li>
+          <li>это называется любовь</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="two-column" style="margin-top:80px;">
+      <div class="column">
+        <h3>Грустные / Депрессивные</h3>
+        <ul>
+          <li>Сигареты</li>
+          <li>044961</li>
+          <li>Все не будет как раньше</li>
+          <li>500</li>
+          <li>Мне нужен кто-то рядом</li>
+          <li>то что было невозможным</li>
+          <li>начну все с начала</li>
+          <li>прости меня</li>
+          <li>твои глаза – две ехи</li>
+          <li>я всегда мечтал подохнуть</li>
+          <li>5подсолнухов (весь альбом)</li>
+          <li>сладкая боль</li>
+          <li>причина твоего несчастья</li>
+          <li>давай поправимся cov</li>
+          <li>прощай + hvrdx</li>
+          <li>в разрухе (02ashes)</li>
+          <li>ступид гёрл</li>
+          <li>зай не дай мне умереть</li>
+          <li>почему я до сих пор не рип</li>
+          <li>#save5mewmet</li>
+          <li>слишком поздно</li>
+          <li>SWAGSTAR</li>
+          <li>мне так легко когда ты рядом</li>
+          <li>4грамма+банкапива</li>
+          <li>.｡･ﾟﾟ･(＞_＜)･ﾟﾟ･｡.</li>
+        </ul>
+      </div>
+
+      <div class="column">
+        <h3>Жестокие</h3>
+        <ul>
+          <li>Мефистофель</li>
+          <li>нож</li>
+          <li>разноцветные таблетки</li>
+          <li>ubivayu oppov</li>
+          <li>InTrO</li>
+          <li>SAMЫЙ G R Я Z N ЫЙ</li>
+          <li>v noski</li>
+        </ul>
+
+        <h3 style="margin-top:60px;">Спокойные</h3>
+        <ul>
+          <li>ты знаешь)</li>
+          <li>первый раз : будь собой</li>
+          <li>витя</li>
+          <li>о тебе</li>
+          <li>кетаминовая яма</li>
+          <li>я знаю что ты хочешь</li>
+          <li>возьми колесо!</li>
+          <li>последний танец</li>
+          <li>крест</li>
+          <li>подарите зазу</li>
+          <li>зеленоглазые деффки</li>
+          <li>zazagartner</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Раздел 2: Топ 10 -->
+  <div id="section2" class="section">
+    <div class="top10">
+      <h2>ТОП 10 ПЕСЕН 5MEWMET<br>(моё мнение!)</h2>
+      <ol>
+        <li>В разрухе</li>
+        <li>флосс</li>
+        <li>")</li>
+        <li>Начну все с начала</li>
+        <li>зеленоглазые деффки!</li>
+        <li>Gimme The Loot 2</li>
+        <li>Pizza from italia</li>
+        <li>Шиза</li>
+        <li>Макаров</li>
+        <li>#НАСКАЧАЕТ5MEWMET</li>
+      </ol>
+    </div>
+  </div>
+
+  <!-- Раздел 3 -->
+  <div id="section3" class="section">
+    <h2 style="text-align:center; color:#fff; margin-bottom:40px; font-size:2.2rem;">ПЕСНИ БЕЗ "ПЕРДЯЩИХ БИТОВ"</h2>
+    
+    <p class="warning">
+      ВНИМАНИЕ! у 5mewmet треки основанны на стилистике jumpstyle, поэтому треков без громких битов будет либо мало, либо небольшие биты будут
+    </p>
+
+    <div style="max-width:1000px; margin:0 auto; font-size:1.45rem; line-height:1.9;">
+      <h3 style="color:#ff8888; margin:35px 0 15px;">Весёлые</h3>
+      <p>pizza from italia ; шиза ; НОВЫЙ ГОД ; лунаходы ; SWAG² ; bonsai + Юпи ; фармилка ; ultra dope ; #наскачает5mewmet</p>
+
+      <h3 style="color:#ff8888; margin:35px 0 15px;">Пошлые</h3>
+      <p>нпс ; ш ; мне сосут твои шлюшки ; steam deck ; покажи мне свои :т</p>
+
+      <h3 style="color:#ff8888; margin:35px 0 15px;">Грустные / Депрессивные</h3>
+      <p>сигареты ; 044961 ; 500 ; твои глаза – две ехи ; я всегда мечтал подохнуть ; сладкая боль ; причина твоего несчастья ; #save5mewmet ; SWAGSTAR ; мне так легко когда ты рядом ; .｡･ﾟﾟ･(＞_＜)･ﾟﾟ･｡.</p>
+
+      <h3 style="color:#ff8888; margin:35px 0 15px;">Спокойные</h3>
+      <p>Какой хороший день! ; ты знаешь) ; будь собой ; витя ; Кетаминовая яма ; о тебе ; я знаю что ты хочешь ; возьми колесо! ; последний танец ; крест ; подарите зазу ; зеленоглазые деффки ; zazagartner.</p>
+    </div>
+  </div>
+
+  <footer>
+    Неофициальный фан-сайт • Сделано с любовью к 5mewmet
+  </footer>
+
+  <script>
+    function showSection(n) {
+      document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+      document.getElementById('section' + n).classList.add('active');
+    }
+
+    document.getElementById('close-btn').addEventListener('click', () => {
+      document.getElementById('disclaimer').style.display = 'none';
+    });
+
+    showSection(1);
+  </script>
+</body>
+</html>
