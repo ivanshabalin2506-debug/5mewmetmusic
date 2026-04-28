@@ -6,13 +6,7 @@
   <title>5mewmetmusic</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       font-family: 'VT323', monospace;
       background: #0a0a0a;
@@ -20,7 +14,6 @@
       line-height: 1.6;
       overflow-x: hidden;
     }
-
     header {
       text-align: center;
       padding: 50px 15px 30px;
@@ -36,8 +29,6 @@
       font-size: 1.3rem;
       margin-top: 8px;
     }
-
-    /* Дисклеймер */
     #disclaimer {
       position: fixed;
       top: 50%; left: 50%;
@@ -59,7 +50,7 @@
     #disclaimer p {
       font-size: 1.35rem;
       color: #ccc;
-      margin-bottom: 15px;
+      margin-bottom: 12px;
     }
     #close-btn {
       position: absolute;
@@ -69,7 +60,6 @@
       cursor: pointer;
     }
     #close-btn:hover { color: #ff0000; }
-
     nav {
       display: flex;
       justify-content: center;
@@ -98,7 +88,6 @@
       color: #000;
       border-color: #ff0000;
     }
-
     .section {
       display: none;
       padding: 30px 15px;
@@ -106,7 +95,6 @@
       margin: 0 auto;
     }
     .section.active { display: block; }
-
     .info-text {
       text-align: center;
       color: #aaa;
@@ -114,19 +102,14 @@
       margin: 20px 0 40px;
       padding: 0 10px;
     }
-
     .two-column {
       display: grid;
       grid-template-columns: 1fr;
       gap: 30px;
-      margin-top: 20px;
     }
     @media (min-width: 768px) {
-      .two-column {
-        grid-template-columns: 1fr 1fr;
-      }
+      .two-column { grid-template-columns: 1fr 1fr; }
     }
-
     .column {
       background: rgba(30,30,30,0.95);
       padding: 25px;
@@ -143,12 +126,20 @@
       padding: 9px 0;
       font-size: 1.35rem;
       border-bottom: 1px dashed #555;
+      display: flex;
+      align-items: center;
     }
     li:last-child { border: none; }
-
+    .happy {
+      color: #00cc00;
+      font-size: 0.95rem;
+      margin-left: 10px;
+      opacity: 0.85;
+      white-space: nowrap;
+    }
     .top10 {
       background: rgba(30,30,30,0.95);
-      padding: 30px;
+      padding: 30px 30px 30px 60px; /* Увеличил отступ слева для цифр */
       border: 3px solid #444;
       max-width: 700px;
       margin: 40px auto;
@@ -157,13 +148,18 @@
       color: #ff4444;
       text-align: center;
       margin-bottom: 25px;
+      margin-left: -30px; /* Компенсация отступа заголовка */
       font-size: 2rem;
     }
     .top10 ol {
       font-size: 1.5rem;
-      padding-left: 40px;
+      list-style-type: decimal; /* Явно включаем нумерацию */
     }
-
+    .top10 ol li {
+      padding-left: 10px;
+      border-bottom: 1px dashed #444;
+      display: list-item; /* Возвращаем стандартное поведение списка */
+    }
     .warning {
       color: #ff0000;
       font-size: 1.55rem;
@@ -173,7 +169,6 @@
       border: 2px solid #ff0000;
       background: rgba(255,0,0,0.1);
     }
-
     footer {
       text-align: center;
       padding: 40px 15px;
@@ -185,36 +180,29 @@
   </style>
 </head>
 <body>
-
-  <!-- Дисклеймер -->
   <div id="disclaimer">
     <span id="close-btn">✕</span>
     <h2>ДИСКЛЕЙМЕР !</h2>
     <p>Все песни и куда они расположены — мнение автора.<br>
     Если ваше мнение конфликтует с моим, прошу не сердиться.<br>
     У каждого оно разное!</p>
-    <p><strong>Рекомендую слушать все треки на SoundCloud — там их легче всего найти в оригинальном качестве.</strong></p>
+    <p><strong>Рекомендую слушать все треки на SoundCloud — там их легче всего найти.</strong></p>
   </div>
-
   <header>
     <h1>5MEWMETMUSIC</h1>
     <p class="subtitle">фан-сайт</p>
   </header>
-
   <nav>
     <button onclick="showSection(1)">Все треки 5mewmet</button>
     <button onclick="showSection(2)">Топ 10 песен</button>
     <button onclick="showSection(3)">Без пердящих битов</button>
   </nav>
-
-  <!-- Раздел 1 -->
   <div id="section1" class="section active">
     <h2 style="text-align:center; color:#fff; margin-bottom:15px; font-size:2.2rem;">ВСЕ ТРЕКИ 5MEWMET</h2>
     
     <p class="info-text">
       Автор не брал треки 5mewmet под другими псевдонимами, а также отбирал их как по его мнению наиболее слушабельные и подходящие для начинающих слушателей 5mewmet.
     </p>
-
     <div class="two-column">
       <div class="column">
         <h3>Весёлые</h3>
@@ -246,7 +234,6 @@
           <li>4 (MAYOT COV)</li>
         </ul>
       </div>
-
       <div class="column">
         <h3>Пошлые</h3>
         <ul>
@@ -257,17 +244,18 @@
           <li>нпс</li>
           <li>ш</li>
           <li>SQUIRT GAME</li>
-          <li>first blood (h)</li>
+          <li>first blood <span class="happy">happy</span></li>
           <li>хочу тебя трахать</li>
           <li>Gimme The Loot 2</li>
-          <li>KOUKOU ROUKOU : твои уши трахает мьюмет (h)</li>
+          <li>KOUKOU ROUKOU</li>
+          <li>твои уши трахает мьюмет <span class="happy">happy</span></li>
           <li>гены</li>
           <li>мне сосут твои шлюшки</li>
           <li>steam deck</li>
           <li>ultra dope</li>
           <li>чемпион</li>
-          <li>подарочек на память (h)</li>
-          <li>Я ТАК ОБОЖАЮ 2 (h)</li>
+          <li>подарочек на память <span class="happy">happy</span></li>
+          <li>Я ТАК ОБОЖАЮ 2 <span class="happy">happy</span></li>
           <li>чипсики доритос</li>
           <li>номномном</li>
           <li>покажи мне свои :т</li>
@@ -276,7 +264,6 @@
         </ul>
       </div>
     </div>
-
     <div class="two-column" style="margin-top:50px;">
       <div class="column">
         <h3>Грустные / Депрессивные</h3>
@@ -308,7 +295,6 @@
           <li>.｡･ﾟﾟ･(＞_＜)･ﾟﾟ･｡.</li>
         </ul>
       </div>
-
       <div class="column">
         <h3>Жестокие</h3>
         <ul>
@@ -320,7 +306,6 @@
           <li>SAMЫЙ G R Я Z N ЫЙ</li>
           <li>v noski</li>
         </ul>
-
         <h3 style="margin-top:50px;">Спокойные</h3>
         <ul>
           <li>ты знаешь)</li>
@@ -339,8 +324,6 @@
       </div>
     </div>
   </div>
-
-  <!-- Раздел 2 -->
   <div id="section2" class="section">
     <div class="top10">
       <h2>ТОП 10 ПЕСЕН 5MEWMET<br>(моё мнение!)</h2>
@@ -358,44 +341,33 @@
       </ol>
     </div>
   </div>
-
-  <!-- Раздел 3 -->
   <div id="section3" class="section">
     <h2 style="text-align:center; color:#fff; margin-bottom:30px; font-size:2.1rem;">ПЕСНИ БЕЗ "ПЕРДЯЩИХ БИТОВ"</h2>
-    
     <p class="warning">
       ВНИМАНИЕ! у 5mewmet треки основанны на стилистике jumpstyle, поэтому треков без громких битов будет либо мало, либо небольшие биты будут
     </p>
-
     <div style="max-width:1000px; margin:0 auto; font-size:1.4rem; line-height:1.8;">
       <h3 style="color:#ff8888; margin:30px 0 12px;">Весёлые</h3>
       <p>pizza from italia ; шиза ; НОВЫЙ ГОД ; лунаходы ; SWAG² ; bonsai + Юпи ; фармилка ; ultra dope ; #наскачает5mewmet</p>
-
       <h3 style="color:#ff8888; margin:30px 0 12px;">Пошлые</h3>
       <p>нпс ; ш ; мне сосут твои шлюшки ; steam deck ; покажи мне свои :т</p>
-
       <h3 style="color:#ff8888; margin:30px 0 12px;">Грустные / Депрессивные</h3>
       <p>сигареты ; 044961 ; 500 ; твои глаза – две ехи ; я всегда мечтал подохнуть ; сладкая боль ; причина твоего несчастья ; #save5mewmet ; SWAGSTAR ; мне так легко когда ты рядом ; .｡･ﾟﾟ･(＞_＜)･ﾟﾟ･｡.</p>
-
       <h3 style="color:#ff8888; margin:30px 0 12px;">Спокойные</h3>
       <p>Какой хороший день! ; ты знаешь) ; будь собой ; витя ; Кетаминовая яма ; о тебе ; я знаю что ты хочешь ; возьми колесо! ; последний танец ; крест ; подарите зазу ; зеленоглазые деффки ; zazagartner.</p>
     </div>
   </div>
-
   <footer>
     Неофициальный фан-сайт • Сделано с любовью к 5mewmet
   </footer>
-
   <script>
     function showSection(n) {
       document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
       document.getElementById('section' + n).classList.add('active');
     }
-
     document.getElementById('close-btn').addEventListener('click', () => {
       document.getElementById('disclaimer').style.display = 'none';
     });
-
     showSection(1);
   </script>
 </body>
