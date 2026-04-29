@@ -3,9 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>5mewmetmusic</title>
+  <title>5mewmet — Фан-сайт</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       font-family: 'VT323', monospace;
@@ -14,58 +15,87 @@
       line-height: 1.6;
       overflow-x: hidden;
     }
+
+    .beta-label {
+      position: fixed;
+      top: 10px;
+      right: 14px;
+      font-family: 'VT323', monospace;
+      font-size: 2rem;
+      color: #2a2a2a;
+      z-index: 9999;
+      pointer-events: none;
+      letter-spacing: 0.05em;
+    }
+
     header {
       text-align: center;
-      padding: 50px 15px 30px;
+      padding: 60px 20px 40px;
       background: rgba(0,0,0,0.9);
     }
+    .title-wrapper {
+      display: inline-flex;
+      align-items: baseline;
+      gap: 14px;
+      margin-left: 120px;
+    }
     h1 {
-      font-size: 2.8rem;
+      font-size: 3.5rem;
       color: #fff;
       text-shadow: 0 0 20px #ff0000;
+      font-family: 'VT323', monospace;
+    }
+    .tracks-label {
+      font-size: 1.4rem;
+      color: #333;
+      font-family: 'VT323', monospace;
+      letter-spacing: 0.05em;
+      margin-left: 4px;
     }
     .subtitle {
       color: #999;
-      font-size: 1.3rem;
-      margin-top: 8px;
+      font-size: 1.4rem;
+      margin-top: 10px;
     }
+
     #disclaimer {
       position: fixed;
       top: 50%; left: 50%;
       transform: translate(-50%, -50%);
       width: 90%;
-      max-width: 700px;
+      max-width: 720px;
       background: #111;
       border: 3px solid #444;
-      padding: 35px 25px;
+      padding: 40px 30px;
       z-index: 1000;
       text-align: center;
       box-shadow: 0 0 40px rgba(255,0,0,0.4);
     }
     #disclaimer h2 {
       color: #ff0000;
-      font-size: 2.6rem;
-      margin-bottom: 20px;
+      font-size: 2.9rem;
+      margin-bottom: 25px;
     }
     #disclaimer p {
-      font-size: 1.35rem;
+      font-size: 1.45rem;
       color: #ccc;
-      margin-bottom: 12px;
+      margin-bottom: 15px;
     }
     #close-btn {
       position: absolute;
-      top: 12px; right: 20px;
-      font-size: 2.8rem;
+      top: 15px; right: 25px;
+      font-size: 3rem;
       color: #888;
       cursor: pointer;
     }
     #close-btn:hover { color: #ff0000; }
+
     nav {
       display: flex;
       justify-content: center;
+      gap: 20px;
       flex-wrap: wrap;
-      gap: 12px;
-      padding: 20px 15px;
+      padding: 25px;
       background: rgba(0,0,0,0.95);
       position: sticky;
       top: 0;
@@ -75,256 +105,279 @@
       background: #222;
       color: #fff;
       border: 2px solid #555;
-      padding: 14px 20px;
+      padding: 16px 28px;
       font-family: 'VT323', monospace;
-      font-size: 1.2rem;
+      font-size: 1.3rem;
       cursor: pointer;
       transition: all 0.3s;
-      flex: 1;
-      max-width: 280px;
     }
     button:hover {
       background: #ff0000;
       color: #000;
       border-color: #ff0000;
     }
+
     .section {
       display: none;
-      padding: 30px 15px;
-      max-width: 1100px;
+      padding: 50px 20px;
+      max-width: 1200px;
       margin: 0 auto;
     }
     .section.active { display: block; }
-    .info-text {
-      text-align: center;
-      color: #aaa;
-      font-size: 1.3rem;
-      margin: 20px 0 40px;
-      padding: 0 10px;
-    }
+
     .two-column {
       display: grid;
-      grid-template-columns: 1fr;
-      gap: 30px;
-    }
-    @media (min-width: 768px) {
-      .two-column { grid-template-columns: 1fr 1fr; }
+      grid-template-columns: 1fr 1fr;
+      gap: 50px;
+      margin-top: 40px;
     }
     .column {
       background: rgba(30,30,30,0.95);
-      padding: 25px;
+      padding: 30px;
       border: 2px solid #444;
     }
     .column h3 {
       color: #ff6666;
-      font-size: 1.9rem;
-      margin-bottom: 20px;
+      font-size: 2rem;
+      margin-bottom: 25px;
       text-align: center;
     }
-    ul { list-style: none; }
+    li a {
+      color: #ddd;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    li a:hover {
+      color: #ff0000;
+    }
     li {
-      padding: 9px 0;
-      font-size: 1.35rem;
+      padding: 10px 0;
+      font-size: 1.4rem;
       border-bottom: 1px dashed #555;
-      display: flex;
-      align-items: center;
     }
     li:last-child { border: none; }
-    .happy {
-      color: #00cc00;
-      font-size: 0.95rem;
-      margin-left: 10px;
-      opacity: 0.85;
-      white-space: nowrap;
-    }
+
     .top10 {
       background: rgba(30,30,30,0.95);
-      padding: 30px 30px 30px 60px; /* Увеличил отступ слева для цифр */
+      padding: 40px;
       border: 3px solid #444;
       max-width: 700px;
-      margin: 40px auto;
+      margin: 50px auto;
     }
     .top10 h2 {
       color: #ff4444;
       text-align: center;
-      margin-bottom: 25px;
-      margin-left: -30px; /* Компенсация отступа заголовка */
-      font-size: 2rem;
+      margin-bottom: 30px;
+      font-size: 2.1rem;
     }
     .top10 ol {
-      font-size: 1.5rem;
-      list-style-type: decimal; /* Явно включаем нумерацию */
+      font-size: 1.6rem;
+      padding-left: 50px;
     }
-    .top10 ol li {
-      padding-left: 10px;
-      border-bottom: 1px dashed #444;
-      display: list-item; /* Возвращаем стандартное поведение списка */
-    }
+    .top10 li { padding: 12px 0; }
+
     .warning {
       color: #ff0000;
-      font-size: 1.55rem;
+      font-size: 1.7rem;
       text-align: center;
-      margin: 25px 0;
-      padding: 15px;
+      margin: 30px 0;
+      padding: 18px;
       border: 2px solid #ff0000;
-      background: rgba(255,0,0,0.1);
+      background: rgba(255,0,0,0.08);
     }
+
+    .info-text {
+      text-align: center;
+      color: #aaa;
+      font-size: 1.35rem;
+      max-width: 900px;
+      margin: 30px auto;
+      padding: 0 20px;
+    }
+
     footer {
       text-align: center;
-      padding: 40px 15px;
+      padding: 50px 20px;
       background: rgba(0,0,0,0.9);
-      margin-top: 60px;
+      margin-top: 80px;
       color: #777;
-      font-size: 1.2rem;
     }
   </style>
 </head>
 <body>
+
+  <div class="beta-label">beta v1.0.1</div>
+
   <div id="disclaimer">
     <span id="close-btn">✕</span>
     <h2>ДИСКЛЕЙМЕР !</h2>
     <p>Все песни и куда они расположены — мнение автора.<br>
     Если ваше мнение конфликтует с моим, прошу не сердиться.<br>
     У каждого оно разное!</p>
-    <p><strong>Рекомендую слушать все треки на SoundCloud — там их легче всего найти.</strong></p>
+    <p><strong>Рекомендую слушать все треки на SoundCloud — там их легче всего найти в оригинальном качестве.</strong></p>
   </div>
+
   <header>
-    <h1>5MEWMETMUSIC</h1>
+    <div class="title-wrapper">
+      <h1>5mewmet</h1>
+      <span class="tracks-label">(tracks)</span>
+    </div>
     <p class="subtitle">фан-сайт</p>
   </header>
+
   <nav>
     <button onclick="showSection(1)">Все треки 5mewmet</button>
-    <button onclick="showSection(2)">Топ 10 песен</button>
-    <button onclick="showSection(3)">Без пердящих битов</button>
+    <button onclick="showSection(2)">Топ 10 песен 5mewmet</button>
+    <button onclick="showSection(3)">Песни без "пердящих битов"</button>
   </nav>
+
   <div id="section1" class="section active">
-    <h2 style="text-align:center; color:#fff; margin-bottom:15px; font-size:2.2rem;">ВСЕ ТРЕКИ 5MEWMET</h2>
-    
+    <h2 style="text-align:center; color:#fff; margin-bottom:20px; font-size:2.4rem;">ВСЕ ТРЕКИ 5MEWMET</h2>
     <p class="info-text">
       Автор не брал треки 5mewmet под другими псевдонимами, а также отбирал их как по его мнению наиболее слушабельные и подходящие для начинающих слушателей 5mewmet.
     </p>
+    
     <div class="two-column">
       <div class="column">
         <h3>Весёлые</h3>
         <ul>
-          <li>pizza from italia</li>
-          <li>Макаров</li>
-          <li>R.i.p 5mewmetl</li>
-          <li>Какой хороший день</li>
-          <li>СПБ</li>
-          <li>шиза</li>
-          <li>Новый год</li>
-          <li>h2o</li>
-          <li>Bernard Arnault</li>
-          <li>манипулятор</li>
-          <li>)</li>
-          <li>лунаходы</li>
-          <li>c13h16clno</li>
-          <li>футбол 2</li>
-          <li>SWAG²</li>
-          <li>bonsai + Юпи</li>
-          <li>фармилка</li>
-          <li>флосс</li>
-          <li>я ебаный гений</li>
-          <li>я такой крутой</li>
-          <li>#наскачает5mewmet</li>
-          <li>разноцветные ремни</li>
-          <li>кишечная палочка</li>
-          <li>дисклеймер</li>
-          <li>4 (MAYOT COV)</li>
+          <li><a href="https://soundcloud.com/5mewmet/pizza-from-italia?si=2ec7a82c00784c7ebeff1fe909efca60&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing" target="_blank">pizza from italia</a></li>
+          <li><a href="https://soundcloud.com/5mewmet/makarov?si=604b56ad92e44665a7a41f99500fb76a&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing" target="_blank">Макаров</a></li>
+          <li><a href="https://soundcloud.com/5mewmet/kakoy-khoroshiy-den-babypills?si=6046e97322eb4c68b004b58a48ae5085&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing" target="_blank">Какой хороший день</a></li>
+          <li><a href="https://soundcloud.com/5mewmet/spb?si=432ba53e95f748d095a0ec3c565ad4ed&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing" target="_blank">СПБ</a></li>
+          <li><a href="https://soundcloud.com/pixiesq/shiza-ft-5mewmet?si=53b6937762554b7fbf5a47662726bc55&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing" target="_blank">шиза</a></li>
+          <li><a href="https://soundcloud.com/me0wns/sexbomba31-5mewmet-novyi-god?si=c6524efca85f4eb98b7fc0635f030740&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing" target="_blank">Новый год</a></li>
+          <li><a href="https://soundcloud.com/5mewmet/h2o-dj-trippie-flameboy?si=02b8fd6e814b4c18adaf0625b9944057&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing" target="_blank">h2o</a></li>
+          <li><a href="https://soundcloud.com/abossut-462504630/5mewmet-babypills-bernard-arnault?si=d87ff2b8bd01468ba83b8867207fabf6&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing" target="_blank">Bernard Arnault</a></li>
+          <li><a href="https://soundcloud.com/serafeeeerd/dayerteq-5mewmet-manipulyator?si=1febc8ec82d94ba9a114c7e4e8a5ff14&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing" target="_blank">манипулятор</a></li>
+          <li><a href="https://soundcloud.com/5mewmet/lunoxody?si=045e8b164c0547b1a639880d69d0e517&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing" target="_blank">лунаходы</a></li>
+          <li><a href="https://soundcloud.com/5mewmet/c13h16clno?si=da4e6f4d62be4ad1b8d5b351a398d5cb&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing" target="_blank">c13h16clno</a></li>
+          <li><a href="https://soundcloud.com/5mewmet/futbol-2?si=8d70bf44f26948fdb6cde087d19293ec&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing" target="_blank">футбол 2</a></li>
+          <li><a href="https://soundcloud.com/5mewmet/swag?si=74f0c0814b5e44d6a3e221c286e0f23a&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing" target="_blank">SWAG²</a></li>
+          <li><a href="https://soundcloud.com/5mewmet/bonsai-yupi?si=411a2dfaf71e44dd921d2e0dbbff759f&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing" target="_blank">bonsai + Юпи</a></li>
+          <li><a href="https://soundcloud.com/5mewmet/farmilka?si=dac07b64ca674c3a8c6919a675d2655a&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing" target="_blank">фармилка</a></li>
+          <li><a href="https://soundcloud.com/5mewmet/floss-floss-rek-fyp-babypills?si=fe38bfe6acea4bfd9aa5136367c459cc&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing" target="_blank">флосс</a></li>
+          <li><a href="https://soundcloud.com/lil_tryba/ya-ebanyj-genij-lilsemmi?si=fa8f17f3413542bc9b2ec21c68987eac&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing" target="_blank">я ебаный гений</a></li>
+          <li><a href="https://soundcloud.com/5mewmet/ya-takoj-krutoj-xdd?si=b9eba45b84ec45d4a8788c25a33a5d79&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing" target="_blank">я такой крутой</a></li>
+          <li><a href="https://soundcloud.com/5mewmet/naskachaet5mewmet?si=2d45e8f04bb743f5ab45f9258536caa2&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing" target="_blank">#наскачает5mewmet</a></li>
+          <li><a href="https://soundcloud.com/5mewmet/raznotsvetye-remni?si=bebe13bfb1f04100909ed29ec6fa6ed3&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing" target="_blank">разноцветные ремни</a></li>
+          <li><a href="https://soundcloud.com/5mewmet/kishechnaya-palochka?si=175ae902686441ae98d865eb42115fa2&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing" target="_blank">кишечная палочка</a></li>
+          <li><a href="https://soundcloud.com/5mewmet/diskleimer-1?si=f7b2e3ee1a1d4a4ebbd2f2b300e08b04&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing" target="_blank">дисклеймер</a></li>
+          <li><a href="https://soundcloud.com/5mewmet/mayot-4?si=2b677cc1d9ab4e7db6787bcab0f8d08c&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing" target="_blank">4 (MAYOT COV)</a></li>
+          <li><a href="https://soundcloud.com/5mewmet/duyu-vud?si=162b3e37b81c49cb8b620165c807dfe5&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing" target="_blank">дую вуд</a></li>
+          <li><a href="https://soundcloud.com/5mewmet/kak-zhe-eto-khorosho-violetta-sokolova?si=a6969b4ea28343ac84c14e587bf3361e&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing" target="_blank">как же это хорошо</a></li>
+          <li><a href="https://soundcloud.com/5mewmet/monster-energy?si=7ab8415524d245e0b7785d244386c051&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing" target="_blank">monster energy</a></li>
+          <li><a href="https://soundcloud.com/5mewmet/hotbox?si=b3f63b25d5e140d69d9338520fe80c7f&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing" target="_blank">хотбокс (w. pillwexxy)</a></li>
+          <li><a href="https://soundcloud.com/5mewmet/urnotswagnigga" target="_blank">prod. supcolly</a></li>
+          <li><a href="https://soundcloud.com/5mewmet/bedvars-yumixx-yungzawaa?si=f728a78768b94d0884f13f1d00925ddc&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing" target="_blank">бедварс</a></li>
+          <li><a href="https://soundcloud.com/5mewmet/tvoi-ushi-tra-aet-myumet" target="_blank">твои уши тра#ает мьюмет)))</a></li>
         </ul>
       </div>
-      <div class="column">
-        <h3>Пошлые</h3>
-        <ul>
-          <li>loli</li>
-          <li>Очередная малолетка</li>
-          <li>хлопай своей писей</li>
-          <li>PANACEA</li>
-          <li>нпс</li>
-          <li>ш</li>
-          <li>SQUIRT GAME</li>
-          <li>first blood <span class="happy">happy</span></li>
-          <li>хочу тебя трахать</li>
-          <li>Gimme The Loot 2</li>
-          <li>KOUKOU ROUKOU</li>
-          <li>твои уши трахает мьюмет <span class="happy">happy</span></li>
-          <li>гены</li>
-          <li>мне сосут твои шлюшки</li>
-          <li>steam deck</li>
-          <li>ultra dope</li>
-          <li>чемпион</li>
-          <li>подарочек на память <span class="happy">happy</span></li>
-          <li>Я ТАК ОБОЖАЮ 2 <span class="happy">happy</span></li>
-          <li>чипсики доритос</li>
-          <li>номномном</li>
-          <li>покажи мне свои :т</li>
-          <li>ореол</li>
-          <li>это называется любовь</li>
-        </ul>
-      </div>
-    </div>
-    <div class="two-column" style="margin-top:50px;">
+
       <div class="column">
         <h3>Грустные / Депрессивные</h3>
         <ul>
-          <li>Сигареты</li>
-          <li>044961</li>
-          <li>Все не будет как раньше</li>
-          <li>500</li>
-          <li>Мне нужен кто-то рядом</li>
-          <li>то что было невозможным</li>
-          <li>начну все с начала</li>
-          <li>прости меня</li>
-          <li>твои глаза – две ехи</li>
-          <li>я всегда мечтал подохнуть</li>
-          <li>5подсолнухов (весь альбом)</li>
-          <li>сладкая боль</li>
-          <li>причина твоего несчастья</li>
-          <li>давай поправимся cov</li>
-          <li>прощай + hvrdx</li>
-          <li>в разрухе (02ashes)</li>
-          <li>ступид гёрл</li>
-          <li>зай не дай мне умереть</li>
-          <li>почему я до сих пор не рип</li>
-          <li>#save5mewmet</li>
-          <li>слишком поздно</li>
-          <li>SWAGSTAR</li>
-          <li>мне так легко когда ты рядом</li>
-          <li>4грамма+банкапива</li>
-          <li>.｡･ﾟﾟ･(＞_＜)･ﾟﾟ･｡.</li>
+          <li><a href="https://soundcloud.com/lata-653670753/sigarety?si=a024acc98b6d433e81a6d3f067b883f0&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing" target="_blank">Сигареты</a></li>
+          <li><a href="https://soundcloud.com/5mewmet/love-is-u?si=3451e9bde92e41c099d00cec8fe0c1b2&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing" target="_blank">044961</a></li>
+          <li><a href="https://soundcloud.com/5mewmet/budutvoeybolyu?si=eef652863a9242e7892d107a5cd17045&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing" target="_blank">Все не будет как раньше</a></li>
+          <li><a href="https://soundcloud.com/5mewmet/yakhochuzabytetovse?si=a944c31133514ad886b0932e654dcfc6&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing" target="_blank">500</a></li>
+          <li><a href="https://soundcloud.com/5mewmet/mne-nuzhen-kto-to-ryadom?si=66cc35c2cee3419eb799fe29bd5b94c0&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing" target="_blank">Мне нужен кто-то рядом</a></li>
+          <li><a href="https://soundcloud.com/5mewmet/po-drugomu?si=f324133934c54dd1b282b65268b55bef&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing" target="_blank">то что было невозможным</a></li>
+          <li><a href="https://soundcloud.com/5mewmet/vogue?si=b91db08b1ab944c9a0c52f96eb51727f&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing" target="_blank">начну все с начала</a></li>
+          <li><a href="https://soundcloud.com/5mewmet/prosti-menya?si=bd2782722cf94158a44e15f1bb425fa6&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing" target="_blank">прости меня</a></li>
+          <li><a href="https://soundcloud.com/farmilkaws/sladkaya-bol?si=365f9ebe1d284d489f11985b0034bde9&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing" target="_blank">сладкая боль</a></li>
+          <li><a href="https://soundcloud.com/5mewmet/unhappiness?si=d1152212376245b188ba73063bf55406&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing" target="_blank">причина твоего несчастья</a></li>
+          <li><a href="https://soundcloud.com/5mewmet/davay-popravimsya-cov-junoes?si=e5486943bb534f06a1edf22aeeeef809&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing" target="_blank">давай поправимся cov (junoes)</a></li>
+          <li><a href="https://soundcloud.com/5mewmet/proshhaj?si=a89649de09334162b59fbc556a6f1963&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing" target="_blank">прощай + hvrdx</a></li>
+          <li><a href="https://soundcloud.com/5mewmet/v-razrukhe?si=22cb433995d2487eb4da489a3725c239&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing" target="_blank">в разрухе (02ashes)</a></li>
+          <li><a href="https://soundcloud.com/5mewmet/stupid-girl?si=8133836002ac4382899f2597997d5915&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing" target="_blank">ступид гёрл</a></li>
+          <li><a href="https://soundcloud.com/5mewmet/hochuplakat?si=3c4907d591db429d84ce06e5cc35b503&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing" target="_blank">зай не дай мне умереть</a></li>
+          <li><a href="https://soundcloud.com/5mewmet/rip?si=71b3e7602cd54237af5d7f1ac58f28d8&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing" target="_blank">почему я до сих пор не рип</a></li>
+          <li><a href="https://soundcloud.com/5mewmet/save5mewmet?si=6f28c610f13a4e56a26e2702044c9609&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing" target="_blank">#save5mewmet</a></li>
+          <li><a href="https://soundcloud.com/5mewmet/slishkom-pozdno?si=3b6d111376034aadb3736cdf34b3d966&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing" target="_blank">слишком поздно</a></li>
+          <li><a href="https://soundcloud.com/5mewmet/swagstar?si=92e7b8277f16495094e3b733e52f2873&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing" target="_blank">SWAGSTAR</a></li>
+          <li><a href="https://soundcloud.com/5mewmet/kogda-ty-ryadom?si=12b63473823f4fcb975dd2d6b7744f4d&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing" target="_blank">мне так легко когда ты рядом</a></li>
+          <li><a href="https://soundcloud.com/5mewmet/ya5ubil5svoego5soseda5za5to5chto5on5meshal5mne5pisat5etu5pesnyu?si=282e240c49444bb09828176422a86ef3&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing" target="_blank">4грамма+банкапива</a></li>
+          <li><a href="https://soundcloud.com/5mewmet/chudesnaya_grust?si=ae73593a7042433d89ab8aa51bbecf4c&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing" target="_blank">.｡･ﾟﾟ･(＞_＜)･ﾟﾟ･｡.</a></li>
+          <li><a href="https://soundcloud.com/5mewmet/doma5slishkom5pusto?si=cd29a431850a47cb830ea7437c029c53&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing" target="_blank">🚪</a></li>
+          <li><a href="https://soundcloud.com/5mewmet/tvoj5zapah5ostalsya5v5moih5vospominaniyah?si=5002832fd0794e7d9b26735c6370556e&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing" target="_blank">🚬</a></li>
+          <li><a href="https://soundcloud.com/5mewmet/vse5proidet5?si=9ad8e9fb7af041538b8a897508445cfc&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing" target="_blank">🌃</a></li>
+          <li><a href="https://soundcloud.com/5mewmet/slishkom-pozdno?si=30ca14f58ad4445bbd402a4f05f0c4eb&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing" target="_blank">слишком поздно:&lt; (prod. kenzee)</a></li>
+          <li><a href="https://soundcloud.com/5mewmet/zabej-na-nix?si=079c432ed1ae4d93848207116c2231e4&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing" target="_blank">забей на них</a></li>
+          <li><a href="https://soundcloud.com/user-420802694/sugarflip?si=2cf27fc8ad46438486fa3d18abc14ceb&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing" target="_blank">sugarflip</a></li>
+          <li><a href="https://soundcloud.com/5mewmet/krest?si=b4804e404dfd4218b2ff58637955347c&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing" target="_blank">крест</a></li>
+          <li><a href="https://soundcloud.com/5mewmet/ty-moe-sudno-nightcoreprod-mouldyy?si=ce5db1e62b434f148790092a1e3ab47a&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing" target="_blank">ты мое судно nightcore (prod. mouldyy)</a></li>
+          <li><a href="https://soundcloud.com/5mewmet/bipolyarka-junoes-dollatega?si=f46f4aa5f4dd4f32a46b22730517028f&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing" target="_blank">биполярка</a></li>
+          <li><a href="https://soundcloud.com/5mewmet/kurt?si=30f3996ab9674c7f99656d92c4908e48" target="_blank">) <span style="color:#1a5c1a; font-size:0.85em;">happy</span></a></li>
         </ul>
       </div>
+    </div>
+
+    <div class="two-column" style="margin-top:80px;">
+      <div class="column">
+        <h3>Похабные</h3>
+        <ul>
+          <li><a href="https://soundcloud.com/kievstealer/loli-novaya-versiya?si=74e1f4d3191046909d04824f277b3c39&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing" target="_blank">loli</a></li>
+          <li><a href="https://soundcloud.com/5mewmet/ocherednaya-maloletko?si=f03bce59077f40199376a951230bd5b2&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing" target="_blank">Очередная малолетка</a></li>
+          <li><a href="https://soundcloud.com/5mewmet/khliupai-svoei-pisei-3-3?si=0b29565bccff4f49ba7e965acf5161ec&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing" target="_blank">хлопай своей писей</a></li>
+          <li><a href="https://soundcloud.com/5mewmet/panacea?si=f3a7cbf6b4a64055864d5b4b42478b62&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing" target="_blank">PANACEA</a></li>
+          <li><a href="https://soundcloud.com/5mewmet/nps?si=9c88937e859049bb84fcf04e46efb9bc&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing" target="_blank">нпс</a></li>
+          <li><a href="https://soundcloud.com/5mewmet/sh?si=7432dab8b9c74d3fbb2b3c6f1dc96e64&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing" target="_blank">ш</a></li>
+          <li><a href="https://soundcloud.com/5mewmet/squirt-game?si=152f0bbf011a49b695c16f78cea202b2&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing" target="_blank">SQUIRT GAME</a></li>
+          <li><a href="https://soundcloud.com/evgeniy-ivanov-426198208/first-blood-5mewmet?si=2cb1b181bbc74035a3193e9b1d5facf9&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing" target="_blank">first blood <span style="color:#1a5c1a; font-size:0.85em;">happy</span></a></li>
+          <li><a href="https://soundcloud.com/5mewmet/khochu-tebya-trakhat?si=c99e4da15256460dae739a3ce07c88a1&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing" target="_blank">хочу тебя трахать</a></li>
+          <li><a href="https://soundcloud.com/5mewmet/gimmetheloot?si=688be00bf44845baa3dd8e39d101a965&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing" target="_blank">Gimme The Loot 2</a></li>
+          <li><a href="https://soundcloud.com/lyublyu-476833690/koukou-roukou-ft-sixbomba31?si=b44b8f0efd624c6198af64c3750f0ecd&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing" target="_blank">KOUKOU ROUKOU <span style="color:#1a5c1a; font-size:0.85em;">happy</span></a></li>
+          <li><a href="https://soundcloud.com/5mewmet/geny?si=4c291a5508e744918d9b9c0239394ff3&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing" target="_blank">гены</a></li>
+          <li><a href="https://soundcloud.com/5mewmet/mn3-sos7t?si=f183c9cd048043699c80e21412ed3244&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing" target="_blank">мне сосут твои шлюшки</a></li>
+          <li><a href="https://soundcloud.com/5mewmet/steam-deck?si=b0e9627e23fc4fabacab93fb4065108b&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing" target="_blank">steam deck</a></li>
+          <li><a href="https://soundcloud.com/5mewmet/ultra-dope-sexbomba31?si=952d4432f63c4b2f8eaf3791b5ed5f85&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing" target="_blank">ultra dope</a></li>
+          <li><a href="https://soundcloud.com/5mewmet/chempion?si=38b7b9c5b94c4674a0eafb6a1fb79bfb&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing" target="_blank">чемпион</a></li>
+          <li><a href="https://soundcloud.com/dayerteqq/podarochek-na-pamiat-16?si=7c3c59ab796e4d48975eb8045bf06e59&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing" target="_blank">подарочек на память <span style="color:#1a5c1a; font-size:0.85em;">happy</span></a></li>
+          <li><a href="https://soundcloud.com/dayerteqq/ia-tak-obozhaiu-2-3?si=fc2762bed9cc4c87aabf7f0797e12afe&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing" target="_blank">Я ТАК ОБОЖАЮ 2 <span style="color:#1a5c1a; font-size:0.85em;">happy</span></a></li>
+          <li><a href="https://soundcloud.com/5mewmet/chipsiki-doritos-xd-2?si=f3a7029f86fe4f2ba0a15e8a198ca8f1&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing" target="_blank">чипсики доритос</a></li>
+          <li><a href="https://soundcloud.com/5mewmet/nomnomnom-o-4?si=4f0164796fb842b2bbb51e9892505a04&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing" target="_blank">номномном</a></li>
+          <li><a href="https://soundcloud.com/5mewmet/showmeyourt?si=967cfcafd70e421eaf785363db53dc54&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing" target="_blank">покажи мне свои :т</a></li>
+          <li><a href="https://soundcloud.com/5mewmet/oreol?si=fa7928c42e8d4a8ba7d03500e06f996d&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing" target="_blank">ореол</a></li>
+          <li><a href="https://soundcloud.com/5mewmet/eto-nazyvaetsya-lyubov?si=166b2de45f124fbf838e8bdc293f51fb&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing" target="_blank">это называется любовь</a></li>
+          <li><a href="https://soundcloud.com/5mewmet/futbol-2?si=8b8bb855ce58490ea10f24f5bd25fad5&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing" target="_blank">футбол</a></li>
+          <li><a href="https://soundcloud.com/5mewmet/zazagartner?si=219675c0135847339e62738de4b22e78&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing" target="_blank">zazagartner</a></li>
+        </ul>
+      </div>
+
       <div class="column">
         <h3>Жестокие</h3>
         <ul>
-          <li>Мефистофель</li>
-          <li>нож</li>
-          <li>разноцветные таблетки</li>
-          <li>ubivayu oppov</li>
-          <li>InTrO</li>
-          <li>SAMЫЙ G R Я Z N ЫЙ</li>
-          <li>v noski</li>
+          <li><a href="https://soundcloud.com/moleyncs/mefistofel-mp3?si=a6df38e3b2ca447ca9802ed5995b8e2b&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing" target="_blank">Мефистофель</a></li>
+          <li><a href="https://soundcloud.com/migas-752487908/nozh-10?si=bd56a4880e024ad18f96089c8aac9e45&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing" target="_blank">нож</a></li>
+          <li><a href="https://soundcloud.com/5mewmet/raznoczvetnye-tabletki?si=ae76cb8c78dc4d3891bc77418ac06331&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing" target="_blank">разноцветные таблетки</a></li>
+          <li><a href="https://soundcloud.com/5mewmet/intro-2?si=558b4b16880b499eba3e0fb14743a404&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing" target="_blank">InTrO</a></li>
+          <li><a href="https://soundcloud.com/5mewmet/xxxxx_xxxxxxx?si=966823dd161d4873894229d78506d8b4&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing" target="_blank">Самый грязный</a></li>
+          <li><a href="https://soundcloud.com/5mewmet/v-noski?si=5c8b629b0a3f4d6fae101e5d80fba2de&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing" target="_blank">v noski</a></li>
         </ul>
-        <h3 style="margin-top:50px;">Спокойные</h3>
+
+        <h3 style="margin-top:60px;">Спокойные</h3>
         <ul>
-          <li>ты знаешь)</li>
-          <li>первый раз</li>
-          <li>будь собой</li>
-          <li>витя</li>
-          <li>о тебе</li>
-          <li>кетаминовая яма</li>
-          <li>я знаю что ты хочешь</li>
-          <li>возьми колесо!</li>
-          <li>последний танец</li>
-          <li>крест</li>
-          <li>подарите зазу</li>
-          <li>зеленоглазые деффки</li>
-          <li>zazagartner</li>
+          <li><a href="https://soundcloud.com/5mewmet/ty-znaesh?si=86002af995014899a028035917b96e24&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing" target="_blank">ты знаешь)</a></li>
+          <li><a href="https://soundcloud.com/me0wns/pervyy-raz?si=6c2c8173f31a4aacb13691538d0dc771&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing" target="_blank">первый раз</a></li>
+          <li><a href="https://soundcloud.com/me0wns/bud-soboi-5mewmet?si=7d5f81ddca7640eb9ecc0bec37a14a26&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing" target="_blank">будь собой</a></li>
+          <li><a href="https://soundcloud.com/5mewmet/vitya?si=703715a05c1d46df914877fe1182be76&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing" target="_blank">витя</a></li>
+          <li><a href="https://soundcloud.com/5mewmet/o-tebe?si=c8277cf4ad4d4f58b37689fd938afb96&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing" target="_blank">о тебе</a></li>
+          <li><a href="https://soundcloud.com/5mewmet/ketaminovaya-yama?in=5mewmet/sets/ketaminovaya-yama&si=a503dd875fb143d8a3f57a92bbee119b&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing" target="_blank">кетаминовая яма</a></li>
+          <li><a href="https://soundcloud.com/5mewmet/ya-znayu-chto-ty-xochesh?si=4420e3ca2f2b46089780cf35c45b328c&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing" target="_blank">я знаю что ты хочешь</a></li>
+          <li><a href="https://soundcloud.com/5mewmet/vozmi-koleso?si=e785765368f846a3a3067122ce4e56fd&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing" target="_blank">возьми колесо!</a></li>
+          <li><a href="https://soundcloud.com/5mewmet/poslednij-tanecz?si=0d50e769e6dd44c4a4258c1bf2ab9d6c&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing" target="_blank">последний танец</a></li>
+          <li><a href="https://soundcloud.com/5mewmet/podarite-zazu?si=eef07be6d8bc4f889dd5aab841f22d9d&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing" target="_blank">подарите зазу</a></li>
+          <li><a href="https://soundcloud.com/5mewmet/zelenoglazye-deffki?si=3e7e5d530018472e87dd4dedde4bda7e&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing" target="_blank">зеленоглазые деффки</a></li>
+          <li><a href="https://soundcloud.com/5mewmet/u5r5star5?si=0171d6fd300e43bdacef6c30666d1118&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing" target="_blank">🌠</a></li>
+          <li><a href="https://soundcloud.com/5mewmet/blue-cheese?si=59c1b58faf914e3cb9eed2836721338e&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing" target="_blank">blue cheese</a></li>
+          <li><a href="https://soundcloud.com/5mewmet/vich-dj-trippie-flameboy?si=3e6bc0455ec845b4a67c6d15e0253a97&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing" target="_blank">вич</a></li>
+          <li><a href="https://soundcloud.com/5mewmet/ubivayu-oppov?si=7cfd32e80d7e43dd9cb10ba7228433a9&utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing" target="_blank">ubivayu oppov</a></li>
         </ul>
       </div>
     </div>
   </div>
+
   <div id="section2" class="section">
     <div class="top10">
       <h2>ТОП 10 ПЕСЕН 5MEWMET<br>(моё мнение!)</h2>
@@ -342,33 +395,41 @@
       </ol>
     </div>
   </div>
+
   <div id="section3" class="section">
-    <h2 style="text-align:center; color:#fff; margin-bottom:30px; font-size:2.1rem;">ПЕСНИ БЕЗ "ПЕРДЯЩИХ БИТОВ"</h2>
+    <h2 style="text-align:center; color:#fff; margin-bottom:40px; font-size:2.2rem;">ПЕСНИ БЕЗ "ПЕРДЯЩИХ БИТОВ"</h2>
     <p class="warning">
       ВНИМАНИЕ! у 5mewmet треки основанны на стилистике jumpstyle, поэтому треков без громких битов будет либо мало, либо небольшие биты будут
     </p>
-    <div style="max-width:1000px; margin:0 auto; font-size:1.4rem; line-height:1.8;">
-      <h3 style="color:#ff8888; margin:30px 0 12px;">Весёлые</h3>
+    <div style="max-width:1000px; margin:0 auto; font-size:1.45rem; line-height:1.9;">
+      <h3 style="color:#ff8888; margin:35px 0 15px;">Весёлые</h3>
       <p>pizza from italia ; шиза ; НОВЫЙ ГОД ; лунаходы ; SWAG² ; bonsai + Юпи ; фармилка ; ultra dope ; #наскачает5mewmet</p>
-      <h3 style="color:#ff8888; margin:30px 0 12px;">Пошлые</h3>
+
+      <h3 style="color:#ff8888; margin:35px 0 15px;">Похабные</h3>
       <p>нпс ; ш ; мне сосут твои шлюшки ; steam deck ; покажи мне свои :т</p>
-      <h3 style="color:#ff8888; margin:30px 0 12px;">Грустные / Депрессивные</h3>
+
+      <h3 style="color:#ff8888; margin:35px 0 15px;">Грустные / Депрессивные</h3>
       <p>сигареты ; 044961 ; 500 ; твои глаза – две ехи ; я всегда мечтал подохнуть ; сладкая боль ; причина твоего несчастья ; #save5mewmet ; SWAGSTAR ; мне так легко когда ты рядом ; .｡･ﾟﾟ･(＞_＜)･ﾟﾟ･｡.</p>
-      <h3 style="color:#ff8888; margin:30px 0 12px;">Спокойные</h3>
+
+      <h3 style="color:#ff8888; margin:35px 0 15px;">Спокойные</h3>
       <p>Какой хороший день! ; ты знаешь) ; будь собой ; витя ; Кетаминовая яма ; о тебе ; я знаю что ты хочешь ; возьми колесо! ; последний танец ; крест ; подарите зазу ; зеленоглазые деффки ; zazagartner.</p>
     </div>
   </div>
+
   <footer>
     Неофициальный фан-сайт • Сделано с любовью к 5mewmet
   </footer>
+
   <script>
     function showSection(n) {
       document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
       document.getElementById('section' + n).classList.add('active');
     }
+
     document.getElementById('close-btn').addEventListener('click', () => {
       document.getElementById('disclaimer').style.display = 'none';
     });
+
     showSection(1);
   </script>
 </body>
