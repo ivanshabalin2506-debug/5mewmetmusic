@@ -60,9 +60,10 @@
 
     #disclaimer {
       position: fixed;
-      top: 50%; left: 50%;
+      top: 50%;
+      left: 50%;
       transform: translate(-50%, -50%);
-      width: 90%;
+      width: 92%;
       max-width: 720px;
       background: #111;
       border: 3px solid #444;
@@ -70,6 +71,7 @@
       z-index: 1000;
       text-align: center;
       box-shadow: 0 0 40px rgba(255,0,0,0.4);
+      box-sizing: border-box;
     }
     #disclaimer h2 {
       color: #ff0000;
@@ -97,10 +99,10 @@
       flex-wrap: wrap;
       padding: 25px;
       background: rgba(0,0,0,0.95);
-      position: sticky;
-      top: 0;
+      position: static;
       z-index: 100;
     }
+
     button {
       background: #222;
       color: #fff;
@@ -226,10 +228,13 @@
       nav {
         gap: 10px;
         padding: 15px 10px;
+        justify-content: center;
       }
       button {
         padding: 12px 16px;
         font-size: 1.1rem;
+        width: auto;
+        text-align: center;
       }
       .two-column {
         grid-template-columns: 1fr;
@@ -278,12 +283,13 @@
     <p class="subtitle">фан-сайт</p>
   </header>
 
-  <nav>
+  <nav id="main-nav">
     <button onclick="showSection(1)">Все треки 5mewmet</button>
     <button onclick="showSection(2)">Топ 10 песен 5mewmet</button>
     <button onclick="showSection(3)">Песни без "пердящих битов"</button>
   </nav>
 
+  <div id="page-content">
   <div id="section1" class="section active">
     <h2 style="text-align:center; color:#fff; margin-bottom:20px; font-size:2.4rem;">ВСЕ ТРЕКИ 5MEWMET</h2>
     <p class="info-text">
@@ -469,6 +475,8 @@
     </div>
   </div>
 
+  </div> <!-- /page-content -->
+
   <footer>
     Неофициальный фан-сайт • Сделано с любовью к 5mewmet
   </footer>
@@ -477,6 +485,8 @@
     function showSection(n) {
       document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
       document.getElementById('section' + n).classList.add('active');
+      // Скроллим наверх до навигации при смене вкладки
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
     document.getElementById('close-btn').addEventListener('click', () => {
